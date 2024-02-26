@@ -24,7 +24,9 @@ jobs:
         - name: Create and write to file
           run: |
             # replace each line in constants.cs with the corresponding environment variable
-            echo "public const string constant_1 = ${{ vars.CONSTANT_ONE }};" > constants.cs
+            echo "public const string constant_1 = \"${{ vars.CONSTANT_ONE }}\";" > constants.cs
+            echo "public const string constant_2 = \"${{ vars.CONSTANT_TWO }}\";" >> constants.cs
+            echo "public const string constant_3 = \"${{ vars.CONSTANT_THREE }}\";" >> constants.cs
             git add constants.cs
             git commit -m "Update constants.cs file with new entry"
         - name: Push changes
