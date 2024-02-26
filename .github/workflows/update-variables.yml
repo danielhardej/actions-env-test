@@ -19,16 +19,22 @@ jobs:
             - name: Create and write to file
               run: |
                 # replace each line in constants.cs with the corresponding environment variable
-                echo "public const string constant_1 = ${{ vars.CONSTANT_ONE }};" >> constants.cs
-                # echo "public const string constant_2 = ${{ vars.CONSTANT_TWO }};" >> constants.cs
-                # echo "public const string constant_3 = ${{ vars.CONSTANT_THREE }};" >> constants.cs
-                # echo "public const string constant_4 = ${{ vars.CONSTANT_FOUR }};" >> constants.cs
-                # echo "public const string constant_5 = ${{ vars.CONSTANT_FIVE }};" >> constants.cs
-                # echo "public const string constant_6 = ${{ vars.CONSTANT_SIX }};" >> constants.cs
-                # echo "public const string constant_7 = ${{ vars.CONSTANT_SEVEN }};" >> constants.cs
-                # echo "public const string constant_8 = ${{ vars.CONSTANT_EIGHT }};" >> constants.cs
-                # echo "public const string constant_9 = ${{ vars.CONSTANT_NINE }};" >> constants.cs
-                # echo "public const string constant_10 = ${{ vars.CONSTANT_TEN }};" >> constants.cs
+                echo "public const string constant_1 = ${{ env.CONSTANT_ONE }};" >> constants.cs
+                # echo "public const string constant_2 = ${{ env.CONSTANT_TWO }};" >> constants.cs
+                # echo "public const string constant_3 = ${{ env.CONSTANT_THREE }};" >> constants.cs
+                # echo "public const string constant_4 = ${{ env.CONSTANT_FOUR }};" >> constants.cs
+                # echo "public const string constant_5 = ${{ env.CONSTANT_FIVE }};" >> constants.cs
+                # echo "public const string constant_6 = ${{ env.CONSTANT_SIX }};" >> constants.cs
+                # echo "public const string constant_7 = ${{ env.CONSTANT_SEVEN }};" >> constants.cs
+                # echo "public const string constant_8 = ${{ env.CONSTANT_EIGHT }};" >> constants.cs
+                # echo "public const string constant_9 = ${{ env.CONSTANT_NINE }};" >> constants.cs
+                # echo "public const string constant_10 = ${{ env.CONSTANT_TEN }};" >> constants.cs
+                git config --global user.email "you@example.com"
+                git config --global user.name "Your Name"
                 git add constants.cs
-                git commit -m "Update constnts.cs file with new entry"
-                git push
+                git commit -m "Update constants.cs file with new entry"
+            - name: Push changes
+              run: |
+                git push origin HEAD:master
+              env:
+                GH_PAT: ${{ secrets.DH_PAT }}
