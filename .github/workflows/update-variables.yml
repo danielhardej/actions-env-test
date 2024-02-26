@@ -2,9 +2,6 @@ name: Update variables
 
 on:
     workflow_dispatch:
-  
-env:
-  constant_one: ${{ vars.CONSTANT_ONE }}
 
 jobs:
   update_variables:
@@ -20,12 +17,14 @@ jobs:
         
         - name: Test env variable access
           run: |
-            echo "$constant_one"
+            echo ${{ vars.USER_EMAIL }}
+            echo ${{ vars.USER_NAME }}
+            echo ${{ vars.CONSTANT_ONE }}
     
         - name: Create and write to file
           run: |
             # replace each line in constants.cs with the corresponding environment variable
-            echo "public const string constant_1 = $constant_one;" > constants.cs
+            echo "public const string constant_1 = ${{ vars.CONSTANT_ONE }};" > constants.cs
             git add constants.cs
             git commit -m "Update constants.cs file with new entry"
         - name: Push changes
