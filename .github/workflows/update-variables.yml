@@ -18,12 +18,12 @@ jobs:
             
             - name: Test env variable access
               run: |
-                echo ${{ env.CONSTANT_ONE }}
+                echo ${{ secrets.CONSTANT_ONE }}
         
             - name: Create and write to file
               run: |
                 # replace each line in constants.cs with the corresponding environment variable
-                echo "public const string constant_1 = ${{ env.CONSTANT_ONE }};" > constants.cs
+                echo "public const string constant_1 = ${{ secrets.CONSTANT_ONE }};" > constants.cs
                 git add constants.cs
                 git commit -m "Update constants.cs file with new entry"
             - name: Push changes
