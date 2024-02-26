@@ -19,16 +19,7 @@ jobs:
             - name: Create and write to file
               run: |
                 # replace each line in constants.cs with the corresponding environment variable
-                echo "public const string constant_1 = ${{ env.CONSTANT_ONE }};" >> constants.cs
-                # echo "public const string constant_2 = ${{ env.CONSTANT_TWO }};" >> constants.cs
-                # echo "public const string constant_3 = ${{ env.CONSTANT_THREE }};" >> constants.cs
-                # echo "public const string constant_4 = ${{ env.CONSTANT_FOUR }};" >> constants.cs
-                # echo "public const string constant_5 = ${{ env.CONSTANT_FIVE }};" >> constants.cs
-                # echo "public const string constant_6 = ${{ env.CONSTANT_SIX }};" >> constants.cs
-                # echo "public const string constant_7 = ${{ env.CONSTANT_SEVEN }};" >> constants.cs
-                # echo "public const string constant_8 = ${{ env.CONSTANT_EIGHT }};" >> constants.cs
-                # echo "public const string constant_9 = ${{ env.CONSTANT_NINE }};" >> constants.cs
-                # echo "public const string constant_10 = ${{ env.CONSTANT_TEN }};" >> constants.cs
+                echo "public const string constant_1 = ${{ vars.CONSTANT_ONE }};" > constants.cs
                 git config --global user.email "you@example.com"
                 git config --global user.name "Your Name"
                 git add constants.cs
