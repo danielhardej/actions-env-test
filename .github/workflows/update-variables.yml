@@ -2,32 +2,34 @@ name: Update variables
 
 on:
     workflow_dispatch:
+  
+env:
+  constant_one: ${{ vars.CONSTANT_ONE }}
 
 jobs:
-    update_variables:
-        runs-on: ubuntu-latest
-        steps:
-
-            - name: Set default identity
-              run: |
-                git config --global user.email ${{ vars.USER_EMAIL }}
-                git config --global user.name ${{ vars.USER_NAME }}
-            
-            - name: Checkout repository
-              uses: actions/checkout@v4
-            
-            - name: Test env variable access
-              run: |
-                echo ${{ secrets.CONSTANT_ONE }}
+  update_variables:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Set default identity
+          run: |
+            git config --global user.email ${{ vars.USER_EMAIL }}
+            git config --global user.name ${{ vars.USER_NAME }}
         
-            - name: Create and write to file
-              run: |
-                # replace each line in constants.cs with the corresponding environment variable
-                echo "public const string constant_1 = ${{ secrets.CONSTANT_ONE }};" > constants.cs
-                git add constants.cs
-                git commit -m "Update constants.cs file with new entry"
-            - name: Push changes
-              run: |
-                git push
-              env:
-                GH_PAT: ${{ secrets.DH_PAT }}
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        
+        - name: Test env variable access
+          run: |
+            echo "$constant_one"
+    
+        - name: Create and write to file
+          run: |
+            # replace each line in constants.cs with the corresponding environment variable
+            echo "public const string constant_1 = $constant_one;" > constants.cs
+            git add constants.cs
+            git commit -m "Update constants.cs file with new entry"
+        - name: Push changes
+          run: |
+            git push
+          env:
+            GH_PAT: ${{ secrets.DH_PAT }}
