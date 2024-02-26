@@ -7,10 +7,10 @@ jobs:
   update_variables:
       runs-on: ubuntu-latest
       steps:
-        - name: Set default identity
-          run: |
-            git config --global user.email ${{ vars.USER_EMAIL }}
-            git config --global user.name ${{ vars.USER_NAME }}
+        # - name: Set default identity
+        #   run: |
+        #     git config --global user.email ${{ vars.USER_EMAIL }}
+        #     git config --global user.name ${{ vars.USER_NAME }}
         
         - name: Checkout repository
           uses: actions/checkout@v4
@@ -32,5 +32,5 @@ jobs:
         - name: Push changes
           run: |
             git push
-          env:
-            GH_PAT: ${{ secrets.DH_PAT }}
+          # env:
+          #   GH_PAT: ${{ secrets.DH_PAT }}
