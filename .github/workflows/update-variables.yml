@@ -19,9 +19,7 @@ jobs:
             - name: Create and write to file
               run: |
                 # replace each line in constants.cs with the corresponding environment variable
-                echo "public const string constant_1 = ${{ vars.CONSTANT_ONE }};" > constants.cs
-                git config --global user.email "you@example.com"
-                git config --global user.name "Your Name"
+                echo "public const string constant_1 = ${{ env.CONSTANT_ONE }};" > constants.cs
                 git add constants.cs
                 git commit -m "Update constants.cs file with new entry"
             - name: Push changes
