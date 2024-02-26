@@ -26,6 +26,6 @@ jobs:
                 git commit -m "Update constants.cs file with new entry"
             - name: Push changes
               run: |
-                git push origin HEAD:master
+                git push
               env:
                 GH_PAT: ${{ secrets.DH_PAT }}
